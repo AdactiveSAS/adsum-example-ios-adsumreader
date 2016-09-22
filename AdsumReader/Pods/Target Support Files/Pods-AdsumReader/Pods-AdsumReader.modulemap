@@ -1,0 +1,6 @@
+framework module Pods_AdsumReader {
+  umbrella header "Pods-AdsumReader-umbrella.h"
+
+  export *
+  module * { export * }
+}
