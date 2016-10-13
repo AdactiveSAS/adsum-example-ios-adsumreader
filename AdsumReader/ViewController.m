@@ -16,7 +16,7 @@
 
 
 
-CameraMode currentCameraMode = CameraMode_FULL;
+CameraMode currentCamera = CameraMode_FULL;
 MainViewController *vcMain;
 
 @implementation ViewController
@@ -27,18 +27,18 @@ MainViewController *vcMain;
 {
     NSString *newButtonText;
     
-    if (currentCameraMode==CameraMode_FULL)
+    if (currentCamera==CameraMode_FULL)
     {
-        currentCameraMode = CameraMode_ORTHO;
+        currentCamera = CameraMode_ORTHO;
         newButtonText = @"3D"; //[bu3d setTitle:@"3D" forState:UIControlStateNormal];
     }
     else
     {
-        currentCameraMode = CameraMode_FULL;
+        currentCamera = CameraMode_FULL;
         newButtonText = @"2D"; //[bu3d setTitle:@"2D" forState:UIControlStateNormal];
     }
     
-    [self.adSumMapViewController setCameraMode:currentCameraMode];
+    [self.adSumMapViewController setCameraMode:currentCamera];
     
     return newButtonText;
 }
