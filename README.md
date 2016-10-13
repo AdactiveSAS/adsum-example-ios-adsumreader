@@ -14,3 +14,7 @@ Our Documentation is available at http://doc.adsum.io/index.php/adsum-ios-sdk/
 * Extract AdsumIOSAPI.framework in ```./AdsumReader/```
 * You might need to run ```pod install``` (see https://cocoapods.org/)
 * Open AdsumReader.xcworkspace
+
+## Screenshot
+
+![alt test](./screenshot.png?raw=true)
