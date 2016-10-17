@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AdsumIOSAPI/ADSumMapViewController.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController : UIViewController<ADSumMapViewControllerDelegate>
+@interface ViewController : UIViewController<ADSumMapViewControllerDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) ADSumMapViewController * adSumMapViewController;
 

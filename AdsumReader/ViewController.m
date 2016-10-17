@@ -10,8 +10,11 @@
 #import "MainViewController.h"
 #import "Pods/ActionSheetPicker-3.0/Pickers/ActionSheetPicker.h"
 
-@interface ViewController ()
+@interface ViewController (){
+    CLLocationManager *     mCompassManager;
+    CLLocation *            mPreviousLocation;
 
+}
 @end
 
 
@@ -100,13 +103,28 @@ MainViewController *vcMain;
                                           origin:button];  // You can also use self.view if you don't have a sender
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+    if (newHeading.headingAccuracy < 0)
+        return;
+    
+    // Use the true heading if it is valid.
+    CLLocationDirection  theHeading = ((newHeading.trueHeading > 0) ?
+                                       newHeading.trueHeading : newHeading.magneticHeading);
+    NSLog(@"Angle to north:%f", theHeading);
+    [self.adSumMapViewController rotateToBearing:theHeading];
 
+}
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    mCompassManager = [[CLLocationManager alloc] init];
+    [mCompassManager setDelegate:self];
+    mCompassManager.headingFilter = kCLHeadingFilterNone;
+    mCompassManager.activityType = CLActivityTypeFitness;
+    [mCompassManager startUpdatingHeading];
+
     _currentPoiId = -1;
 }
 
@@ -168,50 +186,15 @@ MainViewController *vcMain;
     [self.view addSubview:self.adSumMapViewController.view];
     
     //Launch the downloading or update of the map data
-    if (forceUpdate)
-        [self.adSumMapViewController forceUpdateWithExData:YES];
-    else
-        [self.adSumMapViewController updateWithExData:YES];
-    
+//    if (forceUpdate)
+//        [self.adSumMapViewController forceUpdateWithExData:YES];
+//    else
+//        [self.adSumMapViewController updateWithExData:YES];
+    [self.adSumMapViewController start];
     // go
     [_progressCircle setHidden:NO];
     [_progressCircle startAnimating];
 }
-
-/*
- -(void)loadNewMap:(NSString *)xml
- {
- //
- //if(!FilesUtils::Instance()->copyFile(std::string(path)+"/"+ADSUM_CONFIG, dirFiles.string()+"/"+"config.xml")){
- //    std::cout<< "ADSUM_ERROR Missing"<< ADSUM_CONFIG <<" file in your app bundle" <<std::endl;
- 
- [self.adSumMapViewController updateConfigXmlFile:(NSString*)xml];
- 
- [vcMain mapIsReady:NO];
- [self loadMap:YES];
- }*/
-
-/*
- -(void)viewWillLayoutSubviews
- {
- CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
- 
- AdsumCoreView *acv = [self.adSumMapViewController getAdsumCoreView];
- 
- acv.frame = rect;
- 
- 
- //self.adSumMapViewController.AdactiveParentRect = rect;
- // [self.adSumMapViewController
- // [self.adSumMapViewController update];
- 
- // AdsumCoreView *acv = (AdsumCoreView *)self.adSumMapViewController.;
- 
- //acv=acv;
- //[self.adSumMapViewController. AdsumCoreView setupView];
- 
- //[acv resizeViewportWithWidth:self.view.frame.size.width height:self.view.frame.size.height];
- }*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
