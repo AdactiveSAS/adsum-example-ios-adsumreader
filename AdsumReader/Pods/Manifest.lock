@@ -6,10 +6,15 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0
   - QRCodeReaderViewController (~> 4.0.1)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ActionSheetPicker-3.0
+    - QRCodeReaderViewController
+
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   QRCodeReaderViewController: 6538745c8f4ffa9407a26bd7f9489ea01739e7b0
 
-PODFILE CHECKSUM: d1af6a2efa85ce5f981c6fa429a15940e11157c3
+PODFILE CHECKSUM: 6355f91eb6351c01fac541f7e04c9cf54daa5bb3
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.6.0
