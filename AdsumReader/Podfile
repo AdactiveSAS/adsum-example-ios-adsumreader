@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-xcodeproj '../AdsumReader.xcodeproj'
+project '../AdsumReader.xcodeproj'
 
 target 'AdsumReader' do
 
